@@ -8,11 +8,26 @@ import re
 
 
 # 用Chrome获得详情页源代码
+# def get_pageSouce(url):
+#     chrome_options = Options()
+#     chrome_options.add_argument('--headless')
+#     chrome_options.add_argument('--disable-gpu')
+#     driver = webdriver.Chrome(options=chrome_options)
+#     try:
+#         driver.get(url)
+#         driver.switch_to.frame(0)
+#         time.sleep(1)
+#     except Exception as e:
+#         f.close()
+#         print('发生了{}错误!'.format(e))
+#     a = driver.page_source
+#     driver.close()
+#     return a
+
+
+# 用PhantomJS获得详情页源代码
 def get_pageSouce(url):
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.PhantomJS()
     try:
         driver.get(url)
         driver.switch_to.frame(0)
@@ -36,8 +51,8 @@ def get_address(url):
 if __name__ == '__main__':
     # 一共120集
     urls = ['http://www.52tps.com/xz/mjgs_1845/audio_{}.html'.format(number)
-            for number in range(1, 396)]
-    f = open('mjgs.txt', 'w+', encoding='utf-8')
+            for number in range(246, 396)]
+    f = open('mjgs.txt', 'a+', encoding='utf-8')
     count = 0
     try:
         for url in urls:
